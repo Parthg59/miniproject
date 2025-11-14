@@ -80,11 +80,11 @@ const BudgetManager = ({ walletId, transactions, currency, budgets, onBudgetsUpd
     <div className="space-y-6">
       <Card className="glass-card p-6" data-testid="budget-manager">
         <div className="flex items-center justify-between mb-6">
-          <h3 className="text-lg font-semibold text-white">Budget Planner</h3>
+          <h3 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>Budget Planner</h3>
           <Button
             data-testid="add-budget-button"
             onClick={() => setShowAddBudget(!showAddBudget)}
-            className="bg-white hover:bg-gray-200 text-black text-white"
+            className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white"
             size="sm"
           >
             <Plus className="w-4 h-4 mr-2" />
@@ -93,14 +93,22 @@ const BudgetManager = ({ walletId, transactions, currency, budgets, onBudgetsUpd
         </div>
 
         {showAddBudget && (
-          <div className="mb-6 p-4 rounded-lg bg-[#141414] border border-[#2a2a2a] space-y-4 animate-slide-in" data-testid="add-budget-form">
+          <div className="mb-6 p-4 rounded-lg space-y-4 animate-slide-in" style={{ background: 'var(--card-bg)', border: `1px solid var(--card-border)` }} data-testid="add-budget-form">
             <div className="space-y-2">
-              <Label htmlFor="budget-category">Category</Label>
+              <Label htmlFor="budget-category" style={{ color: 'var(--text-primary)' }}>Category</Label>
               <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                <SelectTrigger data-testid="budget-category-select" className="bg-[#141414] border-[#2a2a2a] text-white focus:border-white">
+                <SelectTrigger data-testid="budget-category-select" style={{
+                  background: 'var(--select-bg)',
+                  borderColor: 'var(--select-border)',
+                  color: 'var(--input-text)'
+                }} className="focus:border-white">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="bg-[#141414] border-[#2a2a2a] text-white">
+                <SelectContent style={{
+                  background: 'var(--select-content-bg)',
+                  borderColor: 'var(--select-border)',
+                  color: 'var(--input-text)'
+                }}>
                   {CATEGORIES.map((cat) => {
                     const Icon = cat.icon;
                     return (
@@ -117,7 +125,7 @@ const BudgetManager = ({ walletId, transactions, currency, budgets, onBudgetsUpd
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="budget-limit">Monthly Limit ({currency})</Label>
+              <Label htmlFor="budget-limit" style={{ color: 'var(--text-primary)' }}>Monthly Limit ({currency})</Label>
               <Input
                 id="budget-limit"
                 data-testid="budget-limit-input"
@@ -126,7 +134,12 @@ const BudgetManager = ({ walletId, transactions, currency, budgets, onBudgetsUpd
                 placeholder="0.00"
                 value={budgetLimit}
                 onChange={(e) => setBudgetLimit(e.target.value)}
-                className="bg-[#141414] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-white"
+                style={{
+                  background: 'var(--input-bg)',
+                  borderColor: 'var(--input-border)',
+                  color: 'var(--input-text)'
+                }}
+                className="focus:border-white"
               />
             </div>
 
@@ -138,14 +151,19 @@ const BudgetManager = ({ walletId, transactions, currency, budgets, onBudgetsUpd
                   setShowAddBudget(false);
                   setBudgetLimit('');
                 }}
-                className="flex-1 border-white/20 text-gray-300 hover:bg-[#141414]"
+                style={{
+                  borderColor: 'var(--button-outline-border)',
+                  color: 'var(--button-outline-text)',
+                  background: 'transparent'
+                }}
+                className="flex-1 hover:bg-[var(--card-hover-bg)]"
               >
                 Cancel
               </Button>
               <Button
                 data-testid="save-budget-button"
                 onClick={handleAddBudget}
-                className="flex-1 bg-white hover:bg-gray-200 text-black text-white"
+                className="flex-1 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white"
               >
                 Save Budget
               </Button>
@@ -156,11 +174,11 @@ const BudgetManager = ({ walletId, transactions, currency, budgets, onBudgetsUpd
         <div className="space-y-4">
           {budgetData.length === 0 ? (
             <div className="text-center py-12" data-testid="no-budgets">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#141414] flex items-center justify-center">
-                <TrendingUp className="w-8 h-8 text-gray-500" />
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center" style={{ background: 'var(--bg-tertiary)' }}>
+                <TrendingUp className="w-8 h-8" style={{ color: 'var(--text-tertiary)' }} />
               </div>
-              <p className="text-gray-400">No budgets set yet</p>
-              <p className="text-sm text-gray-500 mt-1">Create budgets to track your spending limits</p>
+              <p style={{ color: 'var(--text-secondary)' }}>No budgets set yet</p>
+              <p className="text-sm mt-1" style={{ color: 'var(--text-tertiary)' }}>Create budgets to track your spending limits</p>
             </div>
           ) : (
             budgetData.map((budget) => {
@@ -170,7 +188,12 @@ const BudgetManager = ({ walletId, transactions, currency, budgets, onBudgetsUpd
                 <div
                   key={budget.category}
                   data-testid={`budget-item-${budget.category}`}
-                  className="p-4 rounded-lg bg-[#141414] border border-[#2a2a2a] space-y-3"
+                  style={{
+                    background: 'var(--card-bg)',
+                    borderColor: 'var(--card-border)',
+                    border: '1px solid var(--card-border)'
+                  }}
+                  className="p-4 rounded-lg space-y-3"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
@@ -181,8 +204,8 @@ const BudgetManager = ({ walletId, transactions, currency, budgets, onBudgetsUpd
                         <Icon className="w-5 h-5" style={{ color: budget.categoryDetails.color }} />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-white">{budget.categoryDetails.label}</h4>
-                        <p className="text-sm text-gray-400">
+                        <h4 className="font-semibold" style={{ color: 'var(--text-primary)' }}>{budget.categoryDetails.label}</h4>
+                        <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
                           {formatCurrency(budget.spent, currency)} of {formatCurrency(budget.limit, currency)}
                         </p>
                       </div>
@@ -205,7 +228,7 @@ const BudgetManager = ({ walletId, transactions, currency, budgets, onBudgetsUpd
                       data-testid={`budget-progress-${budget.category}`}
                     />
                     <div className="flex items-center justify-between text-sm">
-                      <span className={budget.isOverBudget ? 'text-red-400 font-semibold' : 'text-gray-400'}>
+                      <span style={{ color: budget.isOverBudget ? '#ef4444' : 'var(--text-secondary)' }} className={budget.isOverBudget ? 'font-semibold' : ''}>
                         {budget.percentage.toFixed(1)}% used
                       </span>
                       {budget.isOverBudget && (

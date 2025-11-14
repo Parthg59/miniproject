@@ -59,19 +59,25 @@ const TransactionsList = ({ transactions, currency, onTransactionUpdated, onTran
     <div className="space-y-4">
       {transactions.length > 5 && (
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: 'var(--text-tertiary)' }} />
           <Input
             data-testid="search-transactions-input"
             type="text"
             placeholder="Search transactions..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="bg-[#141414] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-white pl-10"
+            style={{
+              background: 'var(--input-bg)',
+              borderColor: 'var(--input-border)',
+              color: 'var(--input-text)',
+              '--placeholder-color': 'var(--input-placeholder)'
+            }}
+            className="pl-10 focus:border-emerald-500"
           />
         </div>
       )}
 
-      <div className="space-y-2">
+      <div className="space-y-2 sm:space-y-3">
         {filteredTransactions.map((transaction) => {
           const categoryDetails = getCategoryDetails(transaction.category);
           const Icon = categoryDetails.icon;
@@ -80,9 +86,13 @@ const TransactionsList = ({ transactions, currency, onTransactionUpdated, onTran
             <div
               key={transaction.id}
               data-testid={`transaction-item-${transaction.id}`}
-              className="transaction-item flex items-center justify-between p-4 rounded-lg bg-[#141414] border border-[#2a2a2a]"
+              className="transaction-item flex flex-col sm:flex-row items-center justify-between p-4 rounded-lg"
+              style={{
+                background: 'var(--card-bg)',
+                borderColor: 'var(--card-border)',
+              }}
             >
-              <div className="flex items-center gap-4 flex-1 min-w-0">
+              <div className="transaction-icon-section flex items-center gap-4 flex-1 min-w-0 sm:flex-shrink-0">
                 <div
                   className="p-3 rounded-full category-icon flex-shrink-0"
                   style={{ background: `${categoryDetails.color}20` }}
@@ -90,49 +100,48 @@ const TransactionsList = ({ transactions, currency, onTransactionUpdated, onTran
                   <Icon className="w-5 h-5" style={{ color: categoryDetails.color }} />
                 </div>
                 
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="font-semibold text-white truncate">{transaction.label}</span>
+                <div className="transaction-details flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1 flex-wrap">
+                    <span className="font-semibold text-sm sm:text-base truncate" style={{ color: 'var(--text-primary)' }}>{transaction.label}</span>
                     {transaction.isRecurring && (
-                      <span className="text-xs px-2 py-0.5 rounded-full bg-[#2a2a2a] text-gray-300">
+                      <span className="text-xs px-2 py-0.5 rounded-full whitespace-nowrap" style={{ background: 'var(--bg-tertiary)', color: 'var(--text-secondary)' }}>
                         Recurring
                       </span>
                     )}
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-400">
-                    <span>{categoryDetails.label}</span>
-                    <span>•</span>
-                    <span>{format(parseISO(transaction.date), 'MMM dd, yyyy')}</span>
-                    <span>•</span>
-                    <span>{transaction.paymentMethod}</span>
+                  <div className="flex flex-wrap items-center gap-1 sm:gap-2 text-xs sm:text-sm" style={{ color: 'var(--text-secondary)' }}>
+                    <span className="truncate">{categoryDetails.label}</span>
+                    <span className="hidden sm:inline">•</span>
+                    <span>{format(parseISO(transaction.date), 'MMM dd')}</span>
+                    <span className="hidden sm:inline">•</span>
+                    <span className="hidden sm:inline truncate">{transaction.paymentMethod}</span>
                   </div>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 flex-shrink-0">
-                <span className="text-lg font-bold text-white">
+              <div className="transaction-amount-section flex items-center gap-1 flex-shrink-0 sm:ml-auto">
+                <Button
+                  data-testid={`edit-transaction-${transaction.id}`}
+                  size="icon"
+                  variant="ghost"
+                  onClick={() => setEditingTransaction(transaction)}
+                  style={{ color: 'var(--text-secondary)' }}
+                  className="h-8 w-8 hover:text-white hover:bg-white/10"
+                >
+                  <Pencil className="w-4 h-4" />
+                </Button>
+                <Button
+                  data-testid={`delete-transaction-${transaction.id}`}
+                  size="icon"
+                  variant="ghost"
+                  onClick={() => setDeleteId(transaction.id)}
+                  className="h-8 w-8 text-red-400 hover:text-red-300 hover:bg-red-500/10"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </Button>
+                <span className="text-base sm:text-lg font-bold whitespace-nowrap" style={{ color: 'var(--text-primary)' }}>
                   {formatCurrency(transaction.amount, currency)}
                 </span>
-                <div className="flex gap-1">
-                  <Button
-                    data-testid={`edit-transaction-${transaction.id}`}
-                    size="icon"
-                    variant="ghost"
-                    onClick={() => setEditingTransaction(transaction)}
-                    className="h-8 w-8 text-gray-300 hover:text-white hover:bg-white/10"
-                  >
-                    <Pencil className="w-4 h-4" />
-                  </Button>
-                  <Button
-                    data-testid={`delete-transaction-${transaction.id}`}
-                    size="icon"
-                    variant="ghost"
-                    onClick={() => setDeleteId(transaction.id)}
-                    className="h-8 w-8 text-red-400 hover:text-red-300 hover:bg-red-500/10"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </Button>
-                </div>
               </div>
             </div>
           );
@@ -160,15 +169,23 @@ const TransactionsList = ({ transactions, currency, onTransactionUpdated, onTran
       )}
 
       <AlertDialog open={!!deleteId} onOpenChange={() => setDeleteId(null)}>
-        <AlertDialogContent className="bg-[#0a0a0a] border-[#2a2a2a] text-white" data-testid="delete-confirmation-dialog">
+        <AlertDialogContent style={{
+          background: 'var(--modal-bg)',
+          borderColor: 'var(--modal-border)',
+          color: 'var(--text-primary)'
+        }} className="border" data-testid="delete-confirmation-dialog">
           <AlertDialogHeader>
-            <AlertDialogTitle>Delete Transaction</AlertDialogTitle>
-            <AlertDialogDescription className="text-gray-400">
+            <AlertDialogTitle style={{ color: 'var(--text-primary)' }}>Delete Transaction</AlertDialogTitle>
+            <AlertDialogDescription style={{ color: 'var(--text-secondary)' }}>
               Are you sure you want to delete this transaction? This action cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel data-testid="cancel-delete-button" className="border-white/20 text-gray-300 hover:bg-[#141414]">
+            <AlertDialogCancel style={{
+              borderColor: 'var(--button-outline-border)',
+              color: 'var(--button-outline-text)',
+              background: 'transparent'
+            }} className="border hover:bg-[var(--card-hover-bg)]">
               Cancel
             </AlertDialogCancel>
             <AlertDialogAction

@@ -1,0 +1,25 @@
+{
+  "short_name": "Expense Tracker",
+  "name": "Expense Tracker - Manage Your Finances",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23030609' width='192' height='192'/><rect fill='%2310b981' x='48' y='48' width='96' height='96' rx='20'/><text x='96' y='130' font-size='80' font-weight='bold' text-anchor='middle' fill='white' font-family='Arial'>E</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='%23030609' width='512' height='512'/><rect fill='%2310b981' x='128' y='128' width='256' height='256' rx='50'/><text x='256' y='360' font-size='220' font-weight='bold' text-anchor='middle' fill='white' font-family='Arial'>E</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#030609",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#10b981",
+  "orientation": "portrait-primary",
+  "description": "Track your expenses, manage budgets, and achieve your financial goals"
+}

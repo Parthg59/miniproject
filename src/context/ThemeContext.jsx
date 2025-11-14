@@ -12,19 +12,10 @@ export const useTheme = () => {
 
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
-    // Check localStorage for saved theme preference
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      return savedTheme;
-    }
-    // Check system preference
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark';
-    }
-    return 'light';
+    return savedTheme || 'dark'; // Default to dark theme
   });
 
-  // Apply theme to document and save to localStorage
   useEffect(() => {
     const htmlElement = document.documentElement;
     htmlElement.setAttribute('data-theme', theme);

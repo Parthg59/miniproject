@@ -14,8 +14,10 @@ import { Calendar } from './ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 import { format } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 const AddTransactionModal = ({ open, onClose, walletId, currency, onTransactionAdded, editTransaction }) => {
+  const { theme } = useTheme();
   const [amount, setAmount] = useState(editTransaction?.amount || '');
   const [category, setCategory] = useState(editTransaction?.category || 'food-drinks');
   const [label, setLabel] = useState(editTransaction?.label || '');
@@ -79,21 +81,28 @@ const AddTransactionModal = ({ open, onClose, walletId, currency, onTransactionA
     }
   };
 
+  const bgColor = theme === 'dark' ? 'bg-[var(--modal-bg)]' : 'bg-[var(--modal-bg)]';
+  const borderColor = theme === 'dark' ? 'border-[var(--modal-border)]' : 'border-[var(--modal-border)]';
+
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="bg-[#0a0a0a] border-[#2a2a2a] text-white max-w-lg max-h-[90vh] overflow-y-auto" data-testid="add-transaction-modal">
+      <DialogContent className={`${bgColor} ${borderColor} text-white max-w-lg max-h-[90vh] overflow-y-auto`} style={{
+        background: 'var(--modal-bg)',
+        borderColor: 'var(--modal-border)',
+        color: 'var(--text-primary)'
+      }} data-testid="add-transaction-modal">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+          <DialogTitle className="text-2xl font-bold" style={{ fontFamily: 'Space Grotesk, sans-serif', color: 'var(--text-primary)' }}>
             {editTransaction ? 'Edit Transaction' : 'Add Transaction'}
           </DialogTitle>
-          <DialogDescription className="text-gray-400">
+          <DialogDescription style={{ color: 'var(--text-secondary)' }}>
             Record your expense details
           </DialogDescription>
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-4 mt-4" data-testid="transaction-form">
           <div className="space-y-2">
-            <Label htmlFor="amount">Amount ({currency})</Label>
+            <Label htmlFor="amount" style={{ color: 'var(--text-primary)' }}>Amount ({currency})</Label>
             <Input
               id="amount"
               data-testid="amount-input"
@@ -103,17 +112,29 @@ const AddTransactionModal = ({ open, onClose, walletId, currency, onTransactionA
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               required
-              className="bg-[#141414] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-white"
+              style={{
+                background: 'var(--input-bg)',
+                borderColor: 'var(--input-border)',
+                color: 'var(--input-text)'
+              }}
+              className="focus:border-emerald-500"
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="category">Category</Label>
+            <Label htmlFor="category" style={{ color: 'var(--text-primary)' }}>Category</Label>
             <Select value={category} onValueChange={setCategory}>
-              <SelectTrigger data-testid="category-select" className="bg-[#141414] border-[#2a2a2a] text-white focus:border-white">
+              <SelectTrigger data-testid="category-select" style={{
+                background: 'var(--select-bg)',
+                borderColor: 'var(--select-border)',
+                color: 'var(--input-text)'
+              }} className="focus:border-emerald-500">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="bg-[#141414] border-[#2a2a2a] text-white max-h-[300px]">
+              <SelectContent style={{
+                background: 'var(--select-content-bg)',
+                borderColor: 'var(--select-border)'
+              }} className="max-h-[300px]">
                 {CATEGORIES.map((cat) => {
                   const Icon = cat.icon;
                   return (
@@ -130,7 +151,7 @@ const AddTransactionModal = ({ open, onClose, walletId, currency, onTransactionA
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="label">Label/Tag</Label>
+            <Label htmlFor="label" style={{ color: 'var(--text-primary)' }}>Label/Tag</Label>
             <Input
               id="label"
               data-testid="label-input"
@@ -139,17 +160,29 @@ const AddTransactionModal = ({ open, onClose, walletId, currency, onTransactionA
               value={label}
               onChange={(e) => setLabel(e.target.value)}
               required
-              className="bg-[#141414] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-white"
+              style={{
+                background: 'var(--input-bg)',
+                borderColor: 'var(--input-border)',
+                color: 'var(--input-text)'
+              }}
+              className="focus:border-emerald-500"
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="payment-method">Payment Method</Label>
+            <Label htmlFor="payment-method" style={{ color: 'var(--text-primary)' }}>Payment Method</Label>
             <Select value={paymentMethod} onValueChange={setPaymentMethod}>
-              <SelectTrigger data-testid="payment-method-select" className="bg-[#141414] border-[#2a2a2a] text-white focus:border-white">
+              <SelectTrigger data-testid="payment-method-select" style={{
+                background: 'var(--select-bg)',
+                borderColor: 'var(--select-border)',
+                color: 'var(--input-text)'
+              }} className="focus:border-emerald-500">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="bg-[#141414] border-[#2a2a2a] text-white">
+              <SelectContent style={{
+                background: 'var(--select-content-bg)',
+                borderColor: 'var(--select-border)'
+              }}>
                 {PAYMENT_METHODS.map((method) => (
                   <SelectItem key={method} value={method} data-testid={`payment-${method}`}>
                     {method}
@@ -160,19 +193,27 @@ const AddTransactionModal = ({ open, onClose, walletId, currency, onTransactionA
           </div>
 
           <div className="space-y-2">
-            <Label>Date</Label>
+            <Label style={{ color: 'var(--text-primary)' }}>Date</Label>
             <Popover>
               <PopoverTrigger asChild>
                 <Button
                   data-testid="date-picker-button"
                   variant="outline"
-                  className="w-full justify-start text-left font-normal bg-[#141414] border-[#2a2a2a] text-white hover:bg-white/10"
+                  className="w-full justify-start text-left font-normal"
+                  style={{
+                    background: 'var(--input-bg)',
+                    borderColor: 'var(--input-border)',
+                    color: 'var(--input-text)'
+                  }}
                 >
                   <CalendarIcon className="mr-2 h-4 w-4" />
                   {format(date, 'PPP')}
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="w-auto p-0 bg-[#141414] border-[#2a2a2a]" align="start">
+              <PopoverContent style={{
+                background: 'var(--select-content-bg)',
+                borderColor: 'var(--select-border)'
+              }} className="w-auto p-0" align="start">
                 <Calendar
                   mode="single"
                   selected={date}
@@ -185,38 +226,57 @@ const AddTransactionModal = ({ open, onClose, walletId, currency, onTransactionA
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="notes">Notes (Optional)</Label>
+            <Label htmlFor="notes" style={{ color: 'var(--text-primary)' }}>Notes (Optional)</Label>
             <Textarea
               id="notes"
               data-testid="notes-input"
               placeholder="Add any additional notes..."
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              className="bg-[#141414] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-white min-h-[80px]"
+              style={{
+                background: 'var(--input-bg)',
+                borderColor: 'var(--input-border)',
+                color: 'var(--input-text)'
+              }}
+              className="min-h-[80px] focus:border-emerald-500"
             />
           </div>
 
-          <div className="flex items-center justify-between p-4 rounded-lg bg-[#141414] border border-[#2a2a2a]">
+          <div className="flex items-center justify-between p-4 rounded-lg" style={{
+            background: 'var(--card-bg)',
+            borderColor: 'var(--card-border)',
+            border: '1px solid var(--card-border)'
+          }}>
             <div>
-              <Label htmlFor="recurring" className="text-white font-semibold">Recurring Transaction</Label>
-              <p className="text-sm text-gray-400">Mark as recurring expense</p>
+              <Label htmlFor="recurring" className="font-semibold" style={{ color: 'var(--text-primary)' }}>Recurring Transaction</Label>
+              <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>Mark as recurring expense</p>
             </div>
             <Switch
               id="recurring"
               data-testid="recurring-switch"
               checked={isRecurring}
               onCheckedChange={setIsRecurring}
+              style={{
+                accentColor: theme === 'dark' ? '#10b981' : '#10b981'
+              }}
             />
           </div>
 
           {isRecurring && (
             <div className="space-y-2 animate-slide-in">
-              <Label htmlFor="recurrence-type">Recurrence Type</Label>
+              <Label htmlFor="recurrence-type" style={{ color: 'var(--text-primary)' }}>Recurrence Type</Label>
               <Select value={recurrenceType} onValueChange={setRecurrenceType}>
-                <SelectTrigger data-testid="recurrence-type-select" className="bg-[#141414] border-[#2a2a2a] text-white focus:border-white">
+                <SelectTrigger data-testid="recurrence-type-select" style={{
+                  background: 'var(--select-bg)',
+                  borderColor: 'var(--select-border)',
+                  color: 'var(--input-text)'
+                }} className="focus:border-emerald-500">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="bg-[#141414] border-[#2a2a2a] text-white">
+                <SelectContent style={{
+                  background: 'var(--select-content-bg)',
+                  borderColor: 'var(--select-border)'
+                }}>
                   {RECURRENCE_TYPES.map((type) => (
                     <SelectItem key={type.value} value={type.value} data-testid={`recurrence-${type.value}`}>
                       {type.label}
@@ -233,7 +293,12 @@ const AddTransactionModal = ({ open, onClose, walletId, currency, onTransactionA
               data-testid="cancel-transaction-button"
               variant="outline"
               onClick={onClose}
-              className="flex-1 border-white/20 text-gray-300 hover:bg-[#141414]"
+              style={{
+                borderColor: 'var(--button-outline-border)',
+                color: 'var(--button-outline-text)',
+                background: 'transparent'
+              }}
+              className="flex-1 hover:bg-[var(--card-hover-bg)]"
             >
               Cancel
             </Button>
@@ -241,7 +306,7 @@ const AddTransactionModal = ({ open, onClose, walletId, currency, onTransactionA
               type="submit"
               data-testid="save-transaction-button"
               disabled={loading}
-              className="flex-1 bg-white hover:bg-gray-200 text-black text-white"
+              className="flex-1 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white"
             >
               {loading ? 'Saving...' : editTransaction ? 'Update' : 'Add Transaction'}
             </Button>

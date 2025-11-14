@@ -10,7 +10,12 @@ const ThemeToggle = () => {
       variant="outline"
       size="icon"
       onClick={toggleTheme}
-      className="theme-toggle"
+      className="theme-toggle border transition-all"
+      style={{
+        borderColor: 'var(--button-outline-border)',
+        color: 'var(--button-outline-text)',
+        background: 'transparent'
+      }}
       title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
     >
       {theme === 'light' ? (

@@ -3,12 +3,19 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#000000" />
-        <meta name="description" content="A product of emergent.sh" />
+        <meta name="theme-color" content="#10b981" />
+        <!-- Updated description and title from Emergent to Expense Tracker -->
+        <meta name="description" content="Smart expense tracking and budget management tool" />
+        <!-- Added PWA metadata for mobile app installation -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="apple-mobile-web-app-title" content="Expense Tracker">
         <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
+        <!-- Added manifest link for PWA support -->
+        <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
         <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -18,8 +25,8 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-        <title>Emergent | Fullstack App</title>
-        <script src="https://assets.emergent.sh/scripts/emergent-main.js"></script>
+        <!-- Updated title to Expense Tracker -->
+        <title>Expense Tracker</title>
         <!--
         These two scripts have been added for the testing, please do not edit or remove them
         -->

@@ -259,7 +259,7 @@ const Dashboard = () => {
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-6 lg:py-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-8">
+        <div className="stat-grid grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-8">
           <Card className="stat-card" data-testid="total-balance-card">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>Current Balance</span>
@@ -328,20 +328,20 @@ const Dashboard = () => {
 
           <TabsContent value="overview" className="space-y-6">
             {/* Charts */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
               {/* Monthly Trend */}
-              <Card className="glass-card p-4 lg:p-6" data-testid="monthly-trend-chart">
-                <h3 className="text-lg font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>Monthly Trend</h3>
-                <ResponsiveContainer width="100%" height={300}>
-                  <BarChart data={monthlyTrendData}>
+              <Card className="glass-card p-3 sm:p-4 lg:p-6" data-testid="monthly-trend-chart">
+                <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4" style={{ color: 'var(--text-primary)' }}>Monthly Trend</h3>
+                <ResponsiveContainer width="100%" height={250}>
+                  <BarChart data={monthlyTrendData} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" />
-                    <XAxis dataKey="month" stroke="var(--chart-axis)" />
-                    <YAxis stroke="var(--chart-axis)" />
+                    <XAxis dataKey="month" stroke="var(--chart-axis)" fontSize={12} />
+                    <YAxis stroke="var(--chart-axis)" fontSize={12} />
                     <Tooltip 
                       contentStyle={{ background: 'var(--card-bg)', border: `1px solid var(--card-border)`, borderRadius: '8px', color: 'var(--text-primary)' }}
                       labelStyle={{ color: 'var(--text-primary)' }}
                     />
-                    <Legend />
+                    <Legend wrapperStyle={{ fontSize: '12px' }} />
                     <Bar dataKey="expense" fill="#ef4444" name="Expenses" />
                     <Bar dataKey="savings" fill="#10b981" name="Savings" />
                   </BarChart>
@@ -349,17 +349,17 @@ const Dashboard = () => {
               </Card>
 
               {/* Category Distribution */}
-              <Card className="glass-card p-4 lg:p-6" data-testid="category-chart">
-                <h3 className="text-lg font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>Category Distribution</h3>
-                <ResponsiveContainer width="100%" height={300}>
+              <Card className="glass-card p-3 sm:p-4 lg:p-6" data-testid="category-chart">
+                <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4" style={{ color: 'var(--text-primary)' }}>Category Distribution</h3>
+                <ResponsiveContainer width="100%" height={250}>
                   <PieChart>
                     <Pie
                       data={categoryData}
                       cx="50%"
                       cy="50%"
                       labelLine={false}
-                      label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                      outerRadius={80}
+                      label={({ name, percent }) => `${(percent * 100).toFixed(0)}%`}
+                      outerRadius={70}
                       fill="#8884d8"
                       dataKey="value"
                     >
