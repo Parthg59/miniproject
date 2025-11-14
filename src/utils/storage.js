@@ -1,7 +1,4 @@
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
-const API = `${BACKEND_URL}/api`;
-
-export const storage = {
+const storage = {
   getUser: () => {
     const user = sessionStorage.getItem('user');
     return user ? JSON.parse(user) : null;
@@ -51,6 +48,8 @@ export const storage = {
   }
 };
 
+export { storage };
+
 export const formatCurrency = (amount, currency = 'USD') => {
   const symbols = {
     USD: '$',
@@ -63,7 +62,8 @@ export const formatCurrency = (amount, currency = 'USD') => {
   };
 
   const symbol = symbols[currency] || currency;
-  return `${symbol}${Number(amount).toFixed(2)}`;
+  const formattedAmount = Number(amount).toFixed(2);
+  return symbol + formattedAmount;
 };
 
 export const convertCurrency = (amount, fromCurrency, toCurrency) => {

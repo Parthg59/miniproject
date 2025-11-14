@@ -81,7 +81,7 @@ const AddTransactionModal = ({ open, onClose, walletId, currency, onTransactionA
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="bg-[#0a0f1e] border-white/10 text-white max-w-lg max-h-[90vh] overflow-y-auto" data-testid="add-transaction-modal">
+      <DialogContent className="bg-[#0a0a0a] border-[#2a2a2a] text-white max-w-lg max-h-[90vh] overflow-y-auto" data-testid="add-transaction-modal">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
             {editTransaction ? 'Edit Transaction' : 'Add Transaction'}
@@ -103,17 +103,17 @@ const AddTransactionModal = ({ open, onClose, walletId, currency, onTransactionA
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               required
-              className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-emerald-500"
+              className="bg-[#141414] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-white"
             />
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="category">Category</Label>
             <Select value={category} onValueChange={setCategory}>
-              <SelectTrigger data-testid="category-select" className="bg-white/5 border-white/10 text-white focus:border-emerald-500">
+              <SelectTrigger data-testid="category-select" className="bg-[#141414] border-[#2a2a2a] text-white focus:border-white">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="bg-[#1a1f35] border-white/10 text-white max-h-[300px]">
+              <SelectContent className="bg-[#141414] border-[#2a2a2a] text-white max-h-[300px]">
                 {CATEGORIES.map((cat) => {
                   const Icon = cat.icon;
                   return (
@@ -139,17 +139,17 @@ const AddTransactionModal = ({ open, onClose, walletId, currency, onTransactionA
               value={label}
               onChange={(e) => setLabel(e.target.value)}
               required
-              className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-emerald-500"
+              className="bg-[#141414] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-white"
             />
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="payment-method">Payment Method</Label>
             <Select value={paymentMethod} onValueChange={setPaymentMethod}>
-              <SelectTrigger data-testid="payment-method-select" className="bg-white/5 border-white/10 text-white focus:border-emerald-500">
+              <SelectTrigger data-testid="payment-method-select" className="bg-[#141414] border-[#2a2a2a] text-white focus:border-white">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="bg-[#1a1f35] border-white/10 text-white">
+              <SelectContent className="bg-[#141414] border-[#2a2a2a] text-white">
                 {PAYMENT_METHODS.map((method) => (
                   <SelectItem key={method} value={method} data-testid={`payment-${method}`}>
                     {method}
@@ -166,13 +166,13 @@ const AddTransactionModal = ({ open, onClose, walletId, currency, onTransactionA
                 <Button
                   data-testid="date-picker-button"
                   variant="outline"
-                  className="w-full justify-start text-left font-normal bg-white/5 border-white/10 text-white hover:bg-white/10"
+                  className="w-full justify-start text-left font-normal bg-[#141414] border-[#2a2a2a] text-white hover:bg-white/10"
                 >
                   <CalendarIcon className="mr-2 h-4 w-4" />
                   {format(date, 'PPP')}
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="w-auto p-0 bg-[#1a1f35] border-white/10" align="start">
+              <PopoverContent className="w-auto p-0 bg-[#141414] border-[#2a2a2a]" align="start">
                 <Calendar
                   mode="single"
                   selected={date}
@@ -192,11 +192,11 @@ const AddTransactionModal = ({ open, onClose, walletId, currency, onTransactionA
               placeholder="Add any additional notes..."
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-emerald-500 min-h-[80px]"
+              className="bg-[#141414] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-white min-h-[80px]"
             />
           </div>
 
-          <div className="flex items-center justify-between p-4 rounded-lg bg-white/5 border border-white/10">
+          <div className="flex items-center justify-between p-4 rounded-lg bg-[#141414] border border-[#2a2a2a]">
             <div>
               <Label htmlFor="recurring" className="text-white font-semibold">Recurring Transaction</Label>
               <p className="text-sm text-gray-400">Mark as recurring expense</p>
@@ -213,10 +213,10 @@ const AddTransactionModal = ({ open, onClose, walletId, currency, onTransactionA
             <div className="space-y-2 animate-slide-in">
               <Label htmlFor="recurrence-type">Recurrence Type</Label>
               <Select value={recurrenceType} onValueChange={setRecurrenceType}>
-                <SelectTrigger data-testid="recurrence-type-select" className="bg-white/5 border-white/10 text-white focus:border-emerald-500">
+                <SelectTrigger data-testid="recurrence-type-select" className="bg-[#141414] border-[#2a2a2a] text-white focus:border-white">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="bg-[#1a1f35] border-white/10 text-white">
+                <SelectContent className="bg-[#141414] border-[#2a2a2a] text-white">
                   {RECURRENCE_TYPES.map((type) => (
                     <SelectItem key={type.value} value={type.value} data-testid={`recurrence-${type.value}`}>
                       {type.label}
@@ -233,7 +233,7 @@ const AddTransactionModal = ({ open, onClose, walletId, currency, onTransactionA
               data-testid="cancel-transaction-button"
               variant="outline"
               onClick={onClose}
-              className="flex-1 border-white/20 text-gray-300 hover:bg-white/5"
+              className="flex-1 border-white/20 text-gray-300 hover:bg-[#141414]"
             >
               Cancel
             </Button>
@@ -241,7 +241,7 @@ const AddTransactionModal = ({ open, onClose, walletId, currency, onTransactionA
               type="submit"
               data-testid="save-transaction-button"
               disabled={loading}
-              className="flex-1 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white"
+              className="flex-1 bg-white hover:bg-gray-200 text-black text-white"
             >
               {loading ? 'Saving...' : editTransaction ? 'Update' : 'Add Transaction'}
             </Button>

@@ -84,7 +84,7 @@ const BudgetManager = ({ walletId, transactions, currency, budgets, onBudgetsUpd
           <Button
             data-testid="add-budget-button"
             onClick={() => setShowAddBudget(!showAddBudget)}
-            className="bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white"
+            className="bg-white hover:bg-gray-200 text-black text-white"
             size="sm"
           >
             <Plus className="w-4 h-4 mr-2" />
@@ -93,14 +93,14 @@ const BudgetManager = ({ walletId, transactions, currency, budgets, onBudgetsUpd
         </div>
 
         {showAddBudget && (
-          <div className="mb-6 p-4 rounded-lg bg-white/5 border border-white/10 space-y-4 animate-slide-in" data-testid="add-budget-form">
+          <div className="mb-6 p-4 rounded-lg bg-[#141414] border border-[#2a2a2a] space-y-4 animate-slide-in" data-testid="add-budget-form">
             <div className="space-y-2">
               <Label htmlFor="budget-category">Category</Label>
               <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                <SelectTrigger data-testid="budget-category-select" className="bg-white/5 border-white/10 text-white focus:border-emerald-500">
+                <SelectTrigger data-testid="budget-category-select" className="bg-[#141414] border-[#2a2a2a] text-white focus:border-white">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="bg-[#1a1f35] border-white/10 text-white">
+                <SelectContent className="bg-[#141414] border-[#2a2a2a] text-white">
                   {CATEGORIES.map((cat) => {
                     const Icon = cat.icon;
                     return (
@@ -126,7 +126,7 @@ const BudgetManager = ({ walletId, transactions, currency, budgets, onBudgetsUpd
                 placeholder="0.00"
                 value={budgetLimit}
                 onChange={(e) => setBudgetLimit(e.target.value)}
-                className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-emerald-500"
+                className="bg-[#141414] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-white"
               />
             </div>
 
@@ -138,14 +138,14 @@ const BudgetManager = ({ walletId, transactions, currency, budgets, onBudgetsUpd
                   setShowAddBudget(false);
                   setBudgetLimit('');
                 }}
-                className="flex-1 border-white/20 text-gray-300 hover:bg-white/5"
+                className="flex-1 border-white/20 text-gray-300 hover:bg-[#141414]"
               >
                 Cancel
               </Button>
               <Button
                 data-testid="save-budget-button"
                 onClick={handleAddBudget}
-                className="flex-1 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white"
+                className="flex-1 bg-white hover:bg-gray-200 text-black text-white"
               >
                 Save Budget
               </Button>
@@ -156,7 +156,7 @@ const BudgetManager = ({ walletId, transactions, currency, budgets, onBudgetsUpd
         <div className="space-y-4">
           {budgetData.length === 0 ? (
             <div className="text-center py-12" data-testid="no-budgets">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/5 flex items-center justify-center">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#141414] flex items-center justify-center">
                 <TrendingUp className="w-8 h-8 text-gray-500" />
               </div>
               <p className="text-gray-400">No budgets set yet</p>
@@ -170,7 +170,7 @@ const BudgetManager = ({ walletId, transactions, currency, budgets, onBudgetsUpd
                 <div
                   key={budget.category}
                   data-testid={`budget-item-${budget.category}`}
-                  className="p-4 rounded-lg bg-white/5 border border-white/10 space-y-3"
+                  className="p-4 rounded-lg bg-[#141414] border border-[#2a2a2a] space-y-3"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">

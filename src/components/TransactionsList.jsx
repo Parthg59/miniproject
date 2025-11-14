@@ -46,7 +46,7 @@ const TransactionsList = ({ transactions, currency, onTransactionUpdated, onTran
   if (transactions.length === 0) {
     return (
       <div className="text-center py-12" data-testid="no-transactions">
-        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/5 flex items-center justify-center">
+        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#141414] flex items-center justify-center">
           <Search className="w-8 h-8 text-gray-500" />
         </div>
         <p className="text-gray-400">No transactions yet</p>
@@ -66,7 +66,7 @@ const TransactionsList = ({ transactions, currency, onTransactionUpdated, onTran
             placeholder="Search transactions..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-emerald-500 pl-10"
+            className="bg-[#141414] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-white pl-10"
           />
         </div>
       )}
@@ -80,7 +80,7 @@ const TransactionsList = ({ transactions, currency, onTransactionUpdated, onTran
             <div
               key={transaction.id}
               data-testid={`transaction-item-${transaction.id}`}
-              className="transaction-item flex items-center justify-between p-4 rounded-lg bg-white/5 border border-white/10"
+              className="transaction-item flex items-center justify-between p-4 rounded-lg bg-[#141414] border border-[#2a2a2a]"
             >
               <div className="flex items-center gap-4 flex-1 min-w-0">
                 <div
@@ -94,7 +94,7 @@ const TransactionsList = ({ transactions, currency, onTransactionUpdated, onTran
                   <div className="flex items-center gap-2 mb-1">
                     <span className="font-semibold text-white truncate">{transaction.label}</span>
                     {transaction.isRecurring && (
-                      <span className="text-xs px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300">
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-[#2a2a2a] text-gray-300">
                         Recurring
                       </span>
                     )}
@@ -119,7 +119,7 @@ const TransactionsList = ({ transactions, currency, onTransactionUpdated, onTran
                     size="icon"
                     variant="ghost"
                     onClick={() => setEditingTransaction(transaction)}
-                    className="h-8 w-8 text-cyan-400 hover:text-cyan-300 hover:bg-cyan-500/10"
+                    className="h-8 w-8 text-gray-300 hover:text-white hover:bg-white/10"
                   >
                     <Pencil className="w-4 h-4" />
                   </Button>
@@ -160,7 +160,7 @@ const TransactionsList = ({ transactions, currency, onTransactionUpdated, onTran
       )}
 
       <AlertDialog open={!!deleteId} onOpenChange={() => setDeleteId(null)}>
-        <AlertDialogContent className="bg-[#0a0f1e] border-white/10 text-white" data-testid="delete-confirmation-dialog">
+        <AlertDialogContent className="bg-[#0a0a0a] border-[#2a2a2a] text-white" data-testid="delete-confirmation-dialog">
           <AlertDialogHeader>
             <AlertDialogTitle>Delete Transaction</AlertDialogTitle>
             <AlertDialogDescription className="text-gray-400">
@@ -168,7 +168,7 @@ const TransactionsList = ({ transactions, currency, onTransactionUpdated, onTran
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel data-testid="cancel-delete-button" className="border-white/20 text-gray-300 hover:bg-white/5">
+            <AlertDialogCancel data-testid="cancel-delete-button" className="border-white/20 text-gray-300 hover:bg-[#141414]">
               Cancel
             </AlertDialogCancel>
             <AlertDialogAction

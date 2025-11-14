@@ -75,7 +75,7 @@ const AddWalletModal = ({ open, onClose, onWalletAdded }) => {
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="bg-[#0a0f1e] border-white/10 text-white max-w-md" data-testid="add-wallet-modal">
+      <DialogContent className="bg-[#0a0a0a] border-[#2a2a2a] text-white max-w-md" data-testid="add-wallet-modal">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>Create Wallet</DialogTitle>
           <DialogDescription className="text-gray-400">
@@ -92,11 +92,11 @@ const AddWalletModal = ({ open, onClose, onWalletAdded }) => {
               onClick={() => setWalletType('manual')}
               className={`p-4 rounded-lg border-2 transition-all ${
                 walletType === 'manual'
-                  ? 'border-emerald-500 bg-emerald-500/10'
-                  : 'border-white/10 bg-white/5 hover:border-white/20'
+                  ? 'border-white bg-[#1a1a1a]'
+                  : 'border-[#2a2a2a] bg-[#141414] hover:border-white/20'
               }`}
             >
-              <Wallet className="w-8 h-8 mx-auto mb-2 text-emerald-400" />
+              <Wallet className="w-8 h-8 mx-auto mb-2 text-gray-300" />
               <div className="text-sm font-semibold">Manual Wallet</div>
             </button>
 
@@ -106,11 +106,11 @@ const AddWalletModal = ({ open, onClose, onWalletAdded }) => {
               onClick={() => setWalletType('bank')}
               className={`p-4 rounded-lg border-2 transition-all ${
                 walletType === 'bank'
-                  ? 'border-emerald-500 bg-emerald-500/10'
-                  : 'border-white/10 bg-white/5 hover:border-white/20'
+                  ? 'border-white bg-[#1a1a1a]'
+                  : 'border-[#2a2a2a] bg-[#141414] hover:border-white/20'
               }`}
             >
-              <Building2 className="w-8 h-8 mx-auto mb-2 text-cyan-400" />
+              <Building2 className="w-8 h-8 mx-auto mb-2 text-gray-300" />
               <div className="text-sm font-semibold">Bank Account</div>
             </button>
           </div>
@@ -135,7 +135,7 @@ const AddWalletModal = ({ open, onClose, onWalletAdded }) => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
-                  className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-emerald-500"
+                  className="bg-[#141414] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-white"
                 />
               </div>
 
@@ -152,7 +152,7 @@ const AddWalletModal = ({ open, onClose, onWalletAdded }) => {
                     value={balance}
                     onChange={(e) => setBalance(e.target.value)}
                     required
-                    className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-emerald-500 pl-10"
+                    className="bg-[#141414] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-white pl-10"
                   />
                 </div>
               </div>
@@ -160,10 +160,10 @@ const AddWalletModal = ({ open, onClose, onWalletAdded }) => {
               <div className="space-y-2">
                 <Label htmlFor="currency">Currency</Label>
                 <Select value={currency} onValueChange={setCurrency}>
-                  <SelectTrigger data-testid="currency-select" className="bg-white/5 border-white/10 text-white focus:border-emerald-500">
+                  <SelectTrigger data-testid="currency-select" className="bg-[#141414] border-[#2a2a2a] text-white focus:border-white">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent className="bg-[#1a1f35] border-white/10 text-white">
+                  <SelectContent className="bg-[#141414] border-[#2a2a2a] text-white">
                     {CURRENCIES.map((curr) => (
                       <SelectItem key={curr.value} value={curr.value} data-testid={`currency-option-${curr.value}`}>
                         {curr.label}
@@ -179,7 +179,7 @@ const AddWalletModal = ({ open, onClose, onWalletAdded }) => {
                   data-testid="cancel-wallet-button"
                   variant="outline"
                   onClick={onClose}
-                  className="flex-1 border-white/20 text-gray-300 hover:bg-white/5"
+                  className="flex-1 border-white/20 text-gray-300 hover:bg-[#141414]"
                 >
                   Cancel
                 </Button>
@@ -187,7 +187,7 @@ const AddWalletModal = ({ open, onClose, onWalletAdded }) => {
                   type="submit"
                   data-testid="create-wallet-button"
                   disabled={loading}
-                  className="flex-1 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white"
+                  className="flex-1 bg-white hover:bg-gray-200 text-black text-white"
                 >
                   {loading ? 'Creating...' : 'Create Wallet'}
                 </Button>

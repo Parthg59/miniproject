@@ -7,9 +7,9 @@ const WalletSelector = ({ wallets, currentWalletId, onWalletChange }) => {
 
   return (
     <Select value={currentWalletId} onValueChange={onWalletChange}>
-      <SelectTrigger data-testid="wallet-selector" className="bg-white/5 border-white/10 text-white focus:border-emerald-500 w-[180px] lg:w-[220px]">
+      <SelectTrigger data-testid="wallet-selector" className="bg-[#141414] border-[#2a2a2a] text-white focus:border-white w-[180px] lg:w-[220px]">
         <div className="flex items-center gap-2">
-          <Wallet className="w-4 h-4 text-emerald-400" />
+          <Wallet className="w-4 h-4 text-gray-300" />
           <SelectValue>
             {currentWallet && (
               <span className="truncate">{currentWallet.name}</span>
@@ -17,7 +17,7 @@ const WalletSelector = ({ wallets, currentWalletId, onWalletChange }) => {
           </SelectValue>
         </div>
       </SelectTrigger>
-      <SelectContent className="bg-[#1a1f35] border-white/10 text-white">
+      <SelectContent className="bg-[#141414] border-[#2a2a2a] text-white">
         {wallets.map((wallet) => (
           <SelectItem key={wallet.id} value={wallet.id} data-testid={`wallet-option-${wallet.id}`}>
             <div className="flex items-center justify-between gap-4 w-full">

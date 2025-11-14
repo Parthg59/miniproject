@@ -166,8 +166,8 @@ const Dashboard = () => {
     return (
       <div className="min-h-screen expense-tracker-app flex items-center justify-center p-4">
         <Card className="glass-card p-8 max-w-md w-full text-center space-y-6" data-testid="welcome-card">
-          <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-emerald-500 to-cyan-500 flex items-center justify-center">
-            <Wallet className="w-10 h-10 text-white" />
+          <div className="w-20 h-20 mx-auto rounded-full bg-white flex items-center justify-center">
+            <Wallet className="w-10 h-10 text-black" />
           </div>
           <div>
             <h2 className="text-2xl font-bold text-white mb-2">Welcome to Expense Tracker</h2>
@@ -176,7 +176,7 @@ const Dashboard = () => {
           <Button
             data-testid="create-first-wallet-button"
             onClick={() => setShowAddWallet(true)}
-            className="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-semibold py-6"
+            className="w-full bg-white hover:bg-gray-200 text-black text-white font-semibold py-6"
           >
             <Plus className="w-5 h-5 mr-2" />
             Create Wallet
@@ -185,7 +185,7 @@ const Dashboard = () => {
             data-testid="logout-button"
             onClick={handleLogout}
             variant="outline"
-            className="w-full border-white/20 text-gray-300 hover:bg-white/5"
+            className="w-full border-white/20 text-gray-300 hover:bg-[#141414]"
           >
             <LogOut className="w-5 h-5 mr-2" />
             Logout
@@ -203,7 +203,7 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen expense-tracker-app">
       {/* Header */}
-      <header className="border-b border-white/10 bg-black/20 backdrop-blur-lg sticky top-0 z-50">
+      <header className="border-b border-[#2a2a2a] bg-black backdrop-blur-lg sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -231,7 +231,7 @@ const Dashboard = () => {
               <Button
                 data-testid="add-transaction-button"
                 onClick={() => setShowAddTransaction(true)}
-                className="bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white"
+                className="bg-white hover:bg-gray-200 text-black text-white"
                 size="sm"
               >
                 <Plus className="w-4 h-4 lg:mr-2" />
@@ -242,7 +242,7 @@ const Dashboard = () => {
                 onClick={handleLogout}
                 variant="outline"
                 size="sm"
-                className="border-white/20 text-gray-300 hover:bg-white/5"
+                className="border-white/20 text-gray-300 hover:bg-[#141414]"
               >
                 <LogOut className="w-4 h-4" />
               </Button>
@@ -258,7 +258,7 @@ const Dashboard = () => {
           <Card className="glass-card p-4 lg:p-6" data-testid="total-balance-card">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm text-gray-400">Current Balance</span>
-              <DollarSign className="w-5 h-5 text-emerald-400" />
+              <DollarSign className="w-5 h-5 text-gray-300" />
             </div>
             <div className="text-2xl lg:text-3xl font-bold text-white">
               {currentWallet && formatCurrency(currentWallet.balance - stats.totalExpense, currentWallet.currency)}
@@ -269,7 +269,7 @@ const Dashboard = () => {
           <Card className="glass-card p-4 lg:p-6" data-testid="month-expense-card">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm text-gray-400">This Month</span>
-              <TrendingDown className="w-5 h-5 text-orange-400" />
+              <TrendingDown className="w-5 h-5 text-gray-300" />
             </div>
             <div className="text-2xl lg:text-3xl font-bold text-white">
               {currentWallet && formatCurrency(stats.thisMonth, currentWallet.currency)}
@@ -285,7 +285,7 @@ const Dashboard = () => {
           <Card className="glass-card p-4 lg:p-6" data-testid="savings-card">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm text-gray-400">Total Savings</span>
-              <TrendingUp className="w-5 h-5 text-cyan-400" />
+              <TrendingUp className="w-5 h-5 text-gray-300" />
             </div>
             <div className="text-2xl lg:text-3xl font-bold text-white">
               {currentWallet && formatCurrency(stats.savings, currentWallet.currency)}
@@ -296,7 +296,7 @@ const Dashboard = () => {
           <Card className="glass-card p-4 lg:p-6" data-testid="total-transactions-card">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm text-gray-400">Transactions</span>
-              <Calendar className="w-5 h-5 text-purple-400" />
+              <Calendar className="w-5 h-5 text-gray-300" />
             </div>
             <div className="text-2xl lg:text-3xl font-bold text-white">
               {walletTransactions.length}
@@ -307,10 +307,10 @@ const Dashboard = () => {
 
         {/* Tabs */}
         <Tabs value={selectedTab} onValueChange={setSelectedTab} className="space-y-6">
-          <TabsList className="bg-white/5 border border-white/10 p-1" data-testid="dashboard-tabs">
-            <TabsTrigger value="overview" data-testid="overview-tab" className="data-[state=active]:bg-emerald-500/20 data-[state=active]:text-emerald-400">Overview</TabsTrigger>
-            <TabsTrigger value="transactions" data-testid="transactions-tab" className="data-[state=active]:bg-emerald-500/20 data-[state=active]:text-emerald-400">Transactions</TabsTrigger>
-            <TabsTrigger value="budgets" data-testid="budgets-tab" className="data-[state=active]:bg-emerald-500/20 data-[state=active]:text-emerald-400">Budgets</TabsTrigger>
+          <TabsList className="bg-[#141414] border border-[#2a2a2a] p-1" data-testid="dashboard-tabs">
+            <TabsTrigger value="overview" data-testid="overview-tab" className="data-[state=active]:bg-white data-[state=active]:text-black">Overview</TabsTrigger>
+            <TabsTrigger value="transactions" data-testid="transactions-tab" className="data-[state=active]:bg-white data-[state=active]:text-black">Transactions</TabsTrigger>
+            <TabsTrigger value="budgets" data-testid="budgets-tab" className="data-[state=active]:bg-white data-[state=active]:text-black">Budgets</TabsTrigger>
           </TabsList>
 
           <TabsContent value="overview" className="space-y-6">
@@ -371,7 +371,7 @@ const Dashboard = () => {
                   variant="ghost"
                   size="sm"
                   onClick={() => setSelectedTab('transactions')}
-                  className="text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10"
+                  className="text-gray-300 hover:text-white hover:bg-white/10"
                   data-testid="view-all-button"
                 >
                   View All
@@ -395,7 +395,7 @@ const Dashboard = () => {
                   onClick={exportTransactions}
                   variant="outline"
                   size="sm"
-                  className="border-white/20 text-gray-300 hover:bg-white/5"
+                  className="border-white/20 text-gray-300 hover:bg-[#141414]"
                 >
                   <Download className="w-4 h-4 mr-2" />
                   Export CSV
