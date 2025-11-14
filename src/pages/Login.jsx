@@ -207,15 +207,8 @@ const Login = () => {
                 <div className="absolute inset-0 flex items-center">
                   <div className="w-full" style={{ height: '1px', background: 'var(--border-light)' }}></div>
                 </div>
-                <div className="relative flex justify-center text-sm">
-                  <span style={{ background: 'var(--card-bg)', color: 'var(--text-tertiary)', padding: '0 0.5rem' }}>Demo Credentials</span>
-                </div>
               </div>
 
-              <div className="text-center text-sm space-y-1" style={{ color: 'var(--text-tertiary)' }}>
-                <p>Username: <span style={{ color: 'var(--text-secondary)', fontWeight: '600' }}>user</span></p>
-                <p>Password: <span style={{ color: 'var(--text-secondary)', fontWeight: '600' }}>password</span></p>
-              </div>
             </div>
           </Card>
         </div>

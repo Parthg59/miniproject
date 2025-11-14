@@ -72,12 +72,12 @@ const TransactionsList = ({ transactions, currency, onTransactionUpdated, onTran
               color: 'var(--input-text)',
               '--placeholder-color': 'var(--input-placeholder)'
             }}
-            className="pl-10 focus:border-emerald-500"
+            className="pl-10 focus:border-white"
           />
         </div>
       )}
 
-      <div className="space-y-2 sm:space-y-3">
+      <div className="space-y-2">
         {filteredTransactions.map((transaction) => {
           const categoryDetails = getCategoryDetails(transaction.category);
           const Icon = categoryDetails.icon;
@@ -86,13 +86,14 @@ const TransactionsList = ({ transactions, currency, onTransactionUpdated, onTran
             <div
               key={transaction.id}
               data-testid={`transaction-item-${transaction.id}`}
-              className="transaction-item flex flex-col sm:flex-row items-center justify-between p-4 rounded-lg"
               style={{
                 background: 'var(--card-bg)',
                 borderColor: 'var(--card-border)',
+                border: '1px solid var(--card-border)'
               }}
+              className="transaction-item flex items-center justify-between p-4 rounded-lg"
             >
-              <div className="transaction-icon-section flex items-center gap-4 flex-1 min-w-0 sm:flex-shrink-0">
+              <div className="flex items-center gap-4 flex-1 min-w-0">
                 <div
                   className="p-3 rounded-full category-icon flex-shrink-0"
                   style={{ background: `${categoryDetails.color}20` }}
@@ -100,48 +101,50 @@ const TransactionsList = ({ transactions, currency, onTransactionUpdated, onTran
                   <Icon className="w-5 h-5" style={{ color: categoryDetails.color }} />
                 </div>
                 
-                <div className="transaction-details flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1 flex-wrap">
-                    <span className="font-semibold text-sm sm:text-base truncate" style={{ color: 'var(--text-primary)' }}>{transaction.label}</span>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="font-semibold truncate" style={{ color: 'var(--text-primary)' }}>{transaction.label}</span>
                     {transaction.isRecurring && (
-                      <span className="text-xs px-2 py-0.5 rounded-full whitespace-nowrap" style={{ background: 'var(--bg-tertiary)', color: 'var(--text-secondary)' }}>
+                      <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: 'var(--bg-tertiary)', color: 'var(--text-secondary)' }}>
                         Recurring
                       </span>
                     )}
                   </div>
-                  <div className="flex flex-wrap items-center gap-1 sm:gap-2 text-xs sm:text-sm" style={{ color: 'var(--text-secondary)' }}>
-                    <span className="truncate">{categoryDetails.label}</span>
-                    <span className="hidden sm:inline">•</span>
-                    <span>{format(parseISO(transaction.date), 'MMM dd')}</span>
-                    <span className="hidden sm:inline">•</span>
-                    <span className="hidden sm:inline truncate">{transaction.paymentMethod}</span>
+                  <div className="flex items-center gap-2 text-sm" style={{ color: 'var(--text-secondary)' }}>
+                    <span>{categoryDetails.label}</span>
+                    <span>•</span>
+                    <span>{format(parseISO(transaction.date), 'MMM dd, yyyy')}</span>
+                    <span>•</span>
+                    <span>{transaction.paymentMethod}</span>
                   </div>
                 </div>
               </div>
 
-              <div className="transaction-amount-section flex items-center gap-1 flex-shrink-0 sm:ml-auto">
-                <Button
-                  data-testid={`edit-transaction-${transaction.id}`}
-                  size="icon"
-                  variant="ghost"
-                  onClick={() => setEditingTransaction(transaction)}
-                  style={{ color: 'var(--text-secondary)' }}
-                  className="h-8 w-8 hover:text-white hover:bg-white/10"
-                >
-                  <Pencil className="w-4 h-4" />
-                </Button>
-                <Button
-                  data-testid={`delete-transaction-${transaction.id}`}
-                  size="icon"
-                  variant="ghost"
-                  onClick={() => setDeleteId(transaction.id)}
-                  className="h-8 w-8 text-red-400 hover:text-red-300 hover:bg-red-500/10"
-                >
-                  <Trash2 className="w-4 h-4" />
-                </Button>
-                <span className="text-base sm:text-lg font-bold whitespace-nowrap" style={{ color: 'var(--text-primary)' }}>
+              <div className="flex items-center gap-3 flex-shrink-0">
+                <span className="text-lg font-bold" style={{ color: 'var(--text-primary)' }}>
                   {formatCurrency(transaction.amount, currency)}
                 </span>
+                <div className="flex gap-1">
+                  <Button
+                    data-testid={`edit-transaction-${transaction.id}`}
+                    size="icon"
+                    variant="ghost"
+                    onClick={() => setEditingTransaction(transaction)}
+                    style={{ color: 'var(--text-secondary)' }}
+                    className="h-8 w-8 hover:text-white hover:bg-white/10"
+                  >
+                    <Pencil className="w-4 h-4" />
+                  </Button>
+                  <Button
+                    data-testid={`delete-transaction-${transaction.id}`}
+                    size="icon"
+                    variant="ghost"
+                    onClick={() => setDeleteId(transaction.id)}
+                    className="h-8 w-8 text-red-400 hover:text-red-300 hover:bg-red-500/10"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </Button>
+                </div>
               </div>
             </div>
           );
