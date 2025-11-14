@@ -8,6 +8,7 @@ import { storage } from '../utils/storage';
 import { initializeSampleData } from '../utils/sampleData';
 import { toast } from 'sonner';
 import { Wallet, TrendingUp, PiggyBank, ArrowRight } from 'lucide-react';
+import ThemeToggle from '../components/ThemeToggle';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -39,48 +40,52 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4" style={{ background: '#0a0a0a' }}>
+    <div className="min-h-screen flex items-center justify-center p-4 expense-tracker-app">
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
+
       <div className="w-full max-w-6xl grid lg:grid-cols-2 gap-8 items-center animate-fade-in">
         
         <div className="hidden lg:block space-y-8">
           <div className="space-y-4">
-            <h1 className="text-5xl lg:text-6xl font-bold text-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <h1 className="text-5xl lg:text-6xl font-bold" style={{ color: 'var(--text-primary)', fontFamily: 'Space Grotesk, sans-serif' }}>
               Track Every
               <span className="block">Penny</span>
             </h1>
-            <p className="text-lg text-gray-400">
+            <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
               Take control of your finances with smart expense tracking, budget planning, and insightful analytics.
             </p>
           </div>
 
           <div className="space-y-4">
-            <div className="flex items-center gap-4 p-4 rounded-lg" style={{ background: '#141414', border: '1px solid #2a2a2a' }}>
-              <div className="p-3 rounded-full" style={{ background: '#1f1f1f' }}>
-                <Wallet className="w-6 h-6 text-gray-300" />
+            <div className="flex items-center gap-4 p-4 rounded-lg" style={{ background: 'var(--card-bg)', border: `1px solid var(--card-border)` }}>
+              <div className="p-3 rounded-full" style={{ background: 'var(--bg-tertiary)' }}>
+                <Wallet className="w-6 h-6" style={{ color: 'var(--text-secondary)' }} />
               </div>
               <div>
-                <h3 className="font-semibold text-white">Multi-Wallet Management</h3>
-                <p className="text-sm text-gray-400">Manage multiple wallets with different currencies</p>
+                <h3 className="font-semibold" style={{ color: 'var(--text-primary)' }}>Multi-Wallet Management</h3>
+                <p className="text-sm" style={{ color: 'var(--text-tertiary)' }}>Manage multiple wallets with different currencies</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-4 p-4 rounded-lg" style={{ background: '#141414', border: '1px solid #2a2a2a' }}>
-              <div className="p-3 rounded-full" style={{ background: '#1f1f1f' }}>
-                <TrendingUp className="w-6 h-6 text-gray-300" />
+            <div className="flex items-center gap-4 p-4 rounded-lg" style={{ background: 'var(--card-bg)', border: `1px solid var(--card-border)` }}>
+              <div className="p-3 rounded-full" style={{ background: 'var(--bg-tertiary)' }}>
+                <TrendingUp className="w-6 h-6" style={{ color: 'var(--text-secondary)' }} />
               </div>
               <div>
-                <h3 className="font-semibold text-white">Smart Analytics</h3>
-                <p className="text-sm text-gray-400">Visual insights into your spending patterns</p>
+                <h3 className="font-semibold" style={{ color: 'var(--text-primary)' }}>Smart Analytics</h3>
+                <p className="text-sm" style={{ color: 'var(--text-tertiary)' }}>Visual insights into your spending patterns</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-4 p-4 rounded-lg" style={{ background: '#141414', border: '1px solid #2a2a2a' }}>
-              <div className="p-3 rounded-full" style={{ background: '#1f1f1f' }}>
-                <PiggyBank className="w-6 h-6 text-gray-300" />
+            <div className="flex items-center gap-4 p-4 rounded-lg" style={{ background: 'var(--card-bg)', border: `1px solid var(--card-border)` }}>
+              <div className="p-3 rounded-full" style={{ background: 'var(--bg-tertiary)' }}>
+                <PiggyBank className="w-6 h-6" style={{ color: 'var(--text-secondary)' }} />
               </div>
               <div>
-                <h3 className="font-semibold text-white">Budget Planning</h3>
-                <p className="text-sm text-gray-400">Set limits and get notified when you exceed</p>
+                <h3 className="font-semibold" style={{ color: 'var(--text-primary)' }}>Budget Planning</h3>
+                <p className="text-sm" style={{ color: 'var(--text-tertiary)' }}>Set limits and get notified when you exceed</p>
               </div>
             </div>
           </div>
@@ -89,13 +94,13 @@ const Login = () => {
         <Card className="glass-card p-8 animate-slide-in" data-testid="login-card">
           <div className="space-y-6">
             <div className="text-center space-y-2">
-              <h2 className="text-3xl font-bold text-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>Welcome Back</h2>
-              <p className="text-gray-400">Sign in to access your expense tracker</p>
+              <h2 className="text-3xl font-bold" style={{ color: 'var(--text-primary)', fontFamily: 'Space Grotesk, sans-serif' }}>Welcome Back</h2>
+              <p style={{ color: 'var(--text-secondary)' }}>Sign in to access your expense tracker</p>
             </div>
 
             <form onSubmit={handleLogin} className="space-y-4" data-testid="login-form">
               <div className="space-y-2">
-                <Label htmlFor="username" className="text-gray-300">Username</Label>
+                <Label htmlFor="username" style={{ color: 'var(--text-secondary)' }}>Username</Label>
                 <Input
                   id="username"
                   data-testid="username-input"
@@ -104,12 +109,17 @@ const Login = () => {
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   required
-                  className="bg-[#141414] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-white"
+                  className="focus:border-emerald-500"
+                  style={{
+                    background: 'var(--input-bg)',
+                    borderColor: 'var(--input-border)',
+                    color: 'var(--input-text)'
+                  }}
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password" className="text-gray-300">Password</Label>
+                <Label htmlFor="password" style={{ color: 'var(--text-secondary)' }}>Password</Label>
                 <Input
                   id="password"
                   data-testid="password-input"
@@ -118,7 +128,12 @@ const Login = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="bg-[#141414] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-white"
+                  className="focus:border-emerald-500"
+                  style={{
+                    background: 'var(--input-bg)',
+                    borderColor: 'var(--input-border)',
+                    color: 'var(--input-text)'
+                  }}
                 />
               </div>
 

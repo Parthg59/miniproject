@@ -1,24 +1,117 @@
-.trackwise-app {
+/* Updated App.css with theme-aware variables and styling */
+
+/* Light Theme */
+:root,
+[data-theme="light"] {
+  --bg-primary: #f8f9fa;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f9fafb;
+  --text-primary: #000000;
+  --text-secondary: #4b5563;
+  --text-tertiary: #808080;
+  --border-light: #e5e7eb;
+  --border-dark: #d1d5db;
+  --card-bg: #ffffff;
+  --card-border: #e5e7eb;
+  --card-hover-bg: #f9fafb;
+  --card-hover-border: #d1d5db;
+  --stat-icon-bg-emerald: #ecfdf5;
+  --stat-icon-bg-red: #fef2f2;
+  --stat-icon-bg-blue: #eff6ff;
+  --header-bg: #ffffff;
+  --header-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --chart-grid: rgba(0, 0, 0, 0.05);
+  --chart-axis: #9ca3af;
+  --toast-bg: #ffffff;
+  --toast-text: #000000;
+  --toast-border: 1px solid #e5e7eb;
+  --toast-success-bg: #ffffff;
+  --toast-success-text: #10b981;
+  --toast-success-border: 1px solid rgba(16, 185, 129, 0.3);
+  --toast-error-bg: #ffffff;
+  --toast-error-text: #ef4444;
+  --toast-error-border: 1px solid rgba(239, 68, 68, 0.3);
+  --scrollbar-track: #f0f2f5;
+  --scrollbar-thumb: #d1d5db;
+  --scrollbar-thumb-hover: #9ca3af;
+  --glass-card-bg: rgba(255, 255, 255, 0.9);
+  --input-bg: #ffffff;
+  --input-border: #e5e7eb;
+  --input-text: #000000;
+  --input-placeholder: #9ca3af;
+  --button-outline-border: #d1d5db;
+  --button-outline-text: #4b5563;
+  --button-outline-hover: #f3f4f6;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --bg-primary: #0a0e27;
+  --bg-secondary: #1a1f35;
+  --bg-tertiary: #141a2f;
+  --text-primary: #ffffff;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #94a3b8;
+  --border-light: #2a3547;
+  --border-dark: #3d4a63;
+  --card-bg: #1a1f35;
+  --card-border: #2a3547;
+  --card-hover-bg: #212942;
+  --card-hover-border: #3d4a63;
+  --stat-icon-bg-emerald: #064e3b;
+  --stat-icon-bg-red: #450a0a;
+  --stat-icon-bg-blue: #0c2d6b;
+  --header-bg: #1a1f35;
+  --header-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --chart-grid: rgba(255, 255, 255, 0.05);
+  --chart-axis: #64748b;
+  --toast-bg: #1a1f35;
+  --toast-text: #ffffff;
+  --toast-border: 1px solid rgba(255, 255, 255, 0.1);
+  --toast-success-bg: #1a1f35;
+  --toast-success-text: #10b981;
+  --toast-success-border: 1px solid rgba(16, 185, 129, 0.3);
+  --toast-error-bg: #1a1f35;
+  --toast-error-text: #ef4444;
+  --toast-error-border: 1px solid rgba(239, 68, 68, 0.3);
+  --scrollbar-track: #141a2f;
+  --scrollbar-thumb: #3d4a63;
+  --scrollbar-thumb-hover: #4f5f7d;
+  --glass-card-bg: rgba(26, 31, 53, 0.8);
+  --input-bg: #141a2f;
+  --input-border: #2a3547;
+  --input-text: #ffffff;
+  --input-placeholder: #64748b;
+  --button-outline-border: #2a3547;
+  --button-outline-text: #cbd5e1;
+  --button-outline-hover: #212942;
+}
+
+.expense-tracker-app {
   min-height: 100vh;
-  background: #0a0a0a;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .glass-card {
-  background: #141414;
-  backdrop-filter: blur(20px);
-  border: 1px solid #2a2a2a;
-  border-radius: 12px;
+  background: var(--glass-card-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   transition: all 0.3s ease;
 }
 
 .glass-card:hover {
-  border-color: #333333;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  border-color: var(--card-hover-border);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  background: var(--card-hover-bg);
 }
 
 .stat-card {
-  background: #141414;
-  border: 1px solid #2a2a2a;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 16px;
   padding: 1.5rem;
   transition: all 0.3s ease;
@@ -26,15 +119,15 @@
 
 .stat-card:hover {
   transform: translateY(-2px);
-  border-color: #404040;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  border-color: var(--card-hover-border);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 .trackwise-logo {
   font-size: 1.75rem;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: #fff;
+  color: #10b981;
 }
 
 .trackwise-brand {
@@ -46,14 +139,14 @@
 .brand-icon {
   width: 40px;
   height: 40px;
-  background: #ffffff;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 800;
   font-size: 1.25rem;
-  color: #0a0a0a;
+  color: #ffffff;
   letter-spacing: -0.05em;
 }
 
@@ -67,14 +160,15 @@
 
 .transaction-item {
   transition: all 0.2s ease;
-  background: #141414;
-  border: 1px solid #2a2a2a;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
 }
 
 .transaction-item:hover {
-  background: #1a1a1a;
-  border-color: #333333;
-  transform: translateX(4px);
+  background: var(--card-hover-bg);
+  border-color: var(--card-hover-border);
+  transform: translateX(2px);
 }
 
 .animate-slide-in {
@@ -115,25 +209,112 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--scrollbar-thumb);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: var(--scrollbar-thumb-hover);
 }
 
 .primary-button {
-  background: #ffffff;
-  color: #0a0a0a;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
   transition: all 0.3s ease;
+  border: none;
 }
 
 .primary-button:hover {
-  background: #e5e5e5;
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+header {
+  background: var(--header-bg);
+  box-shadow: var(--header-shadow);
+  border-bottom: 1px solid var(--border-light);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.theme-toggle {
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background: var(--card-hover-bg);
+  border-color: var(--card-hover-border);
+}
+
+@media (max-width: 768px) {
+  .glass-card {
+    border-radius: 12px;
+  }
+
+  .stat-card {
+    padding: 1rem;
+  }
+
+  .transaction-item {
+    border-radius: 10px;
+  }
+
+  body {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: white;
+  color: #10b981;
+  border: 2px solid #10b981;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: #f0f9f7;
+  border-color: #059669;
 }
